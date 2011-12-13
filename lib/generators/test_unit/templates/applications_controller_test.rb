@@ -4,7 +4,6 @@ require 'oauth/client/action_controller_request'
 class OauthApplicationsController; def rescue_action(e) raise e end; end
 
 class OauthApplicationsControllerIndexTest < ActionController::TestCase
-  include OAuthControllerTestHelper
   tests OauthApplicationsController
 
   def setup
