@@ -8,5 +8,6 @@ pkg
 .swp
 .idea
 .rvmrc
+*.komodoproject
 
 Gemfile.lock
