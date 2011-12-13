@@ -50,7 +50,7 @@ https://github.com/pelle/oauth-plugin/blob/master/lib/generators/active_record/o
 
     def exchange!(params={})
       OauthToken.transaction do
-        token = Oauth2Token.create! :user=>user,:client_application=>client_application, :scope => scope
+        token = Oauth2Token.create! :user=>user, :oauth_application=>oauth_application, :scope => scope
         invalidate!
         token
       end
@@ -153,8 +153,8 @@ The generator supports the defaults you have created in your application.rb file
 
 Add the following lines to your user model:
 
-  has_many :client_applications
-  has_many :tokens, :class_name => "OauthToken", :order => "authorized_at desc", :include => [:client_application]
+  has_many :oauth_applications
+  has_many :tokens, :class_name => "OauthToken", :order => "authorized_at desc", :include => [:oauth_application]
 
 == OAuth Provider generator (Rails 2)
 
@@ -178,8 +178,8 @@ These can of course be used individually as well.
 
 Add the following lines to your user model:
 
-  has_many :client_applications
-  has_many :tokens, :class_name => "OauthToken", :order => "authorized_at desc", :include => [:client_application]
+  has_many :oauth_applications
+  has_many :tokens, :class_name => "OauthToken", :order => "authorized_at desc", :include => [:oauth_application]
 
 === Migrate database
 
@@ -219,11 +219,11 @@ Make it look like this:
 
 There are changes to the following files:
 
-  app/models/client_application.rb
+  app/models/oauth_application.rb
   app/models/request_token.rb
   app/controllers/oauth_controller.rb
 
-=== Changes in client_application.rb
+=== Changes in oauth_application.rb
 
 Add the following towards the top of the model class
 
@@ -232,7 +232,7 @@ Add the following towards the top of the model class
 Then change the create_request_token method to the following:
 
   def create_request_token
-    RequestToken.create :client_application => self, :callback_url => token_callback_url
+    RequestToken.create :oauth_application => self, :callback_url => token_callback_url
   end
 
 === Changes in request_token.rb
@@ -258,7 +258,7 @@ Make sure it looks like this:
       return false unless oauth10? || verifier == provided_oauth_verifier
 
       RequestToken.transaction do
-        access_token = AccessToken.create(:user => user, :client_application => client_application)
+        access_token = AccessToken.create(:user => user, :oauth_application => oauth_application)
         invalidate!
         access_token
       end
@@ -293,9 +293,9 @@ All you need to do here is the change the authorize action to use the request_to
         if params[:authorize] == '1'
           @token.authorize!(current_user)
           if @token.oauth10?
-            @redirect_url = params[:oauth_callback] || @token.client_application.callback_url
+            @redirect_url = params[:oauth_callback] || @token.oauth_application.callback_url
           else
-            @redirect_url = @token.oob? ? @token.client_application.callback_url : @token.callback_url
+            @redirect_url = @token.oob? ? @token.oauth_application.callback_url : @token.callback_url
           end
 
           if @redirect_url
@@ -360,9 +360,9 @@ If you have an action you only want used via oauth:
 All of these places the tokens user in current_user as you would expect. It also exposes the following methods:
 
 * current_token - for accessing the token used to authorize the current request
-* current_client_application - for accessing information about which consumer is currently accessing your request
+* current_oauth_application - for accessing information about which consumer is currently accessing your request
 
-You could add application specific information to the OauthToken and ClientApplication model for such things as object level access control, billing, expiry etc. Be creative and you can create some really cool applications here.
+You could add application specific information to the OauthToken and OauthApplication model for such things as object level access control, billing, expiry etc. Be creative and you can create some really cool applications here.
 
 == OAuth Consumer generator
 

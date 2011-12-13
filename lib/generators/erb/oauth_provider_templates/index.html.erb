@@ -6,7 +6,7 @@
   <tr><th>Application</th><th>Issued</th><th>&nbsp;</th></tr>
   <%% @tokens.each do |token|%>
     <%% content_tag_for :tr, token do %>
-      <td><%%= link_to token.client_application.name, token.client_application.url %></td>
+      <td><%%= link_to token.oauth_application.name, token.oauth_application.url %></td>
       <td><%%= token.authorized_at %></td>
       <td>
         <%% form_tag :controller => 'oauth', :action => 'revoke' do %>
@@ -20,7 +20,7 @@
 </table>
 <%% end %>
 <h3>Application Developers</h3>
-<%% if @client_applications.empty? %>
+<%% if @oauth_applications.empty? %>
   <p>
     Do you have an application you would like to register for use with us using the <a href="http://oauth.net">OAuth</a> standard?
   </p>
@@ -31,7 +31,7 @@
   <p>
     You have the following client applications registered:
   </p>
-  <%% @client_applications.each do |client|%>
+  <%% @oauth_applications.each do |client|%>
     <%% div_for client do %>
       <%%= link_to client.name, oauth_client_path(client) %>-
         <%%= link_to 'Edit', edit_oauth_client_path(client) %>

@@ -8,8 +8,8 @@ If you generated the migration file (true by default), make sure you run
 
 include the following in your user.rb
 
-  has_many :client_applications
-  has_many :tokens, :class_name=>"OauthToken",:order=>"authorized_at desc",:include=>[:client_application]
+  has_many :oauth_applications
+  has_many :tokens, :class_name=>"OauthToken",:order=>"authorized_at desc",:include=>[:oauth_application]
 
 For legacy OAUTH 1.0 support add the following constant in your environment.rb
 

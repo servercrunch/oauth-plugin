@@ -14,7 +14,7 @@ module TestUnit
       end
 
       def copy_models_test_files
-        template 'client_application_test.rb',  File.join('test/unit', 'client_application_test.rb')
+        template 'oauth_application_test.rb',  File.join('test/unit', 'oauth_application_test.rb')
         template 'oauth_token_test.rb',         File.join('test/unit', 'oauth_token_test.rb')
         template 'oauth_nonce_test.rb',         File.join('test/unit', 'oauth_nonce_test.rb')
       end
@@ -23,7 +23,7 @@ module TestUnit
 
       def create_fixture_file
         if options[:fixtures] && options[:fixture_replacement].nil?
-          template 'client_applications.yml',   File.join('test/fixtures', 'client_applications.yml')
+          template 'oauth_applications.yml',   File.join('test/fixtures', 'oauth_applications.yml')
           template 'oauth_tokens.yml',          File.join('test/fixtures', 'oauth_tokens.yml')
           template 'oauth_nonces.yml',          File.join('test/fixtures', 'oauth_nonces.yml')
         end

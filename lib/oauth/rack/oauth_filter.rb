@@ -32,22 +32,22 @@ module OAuth
           end
 
         elsif oauth1_verify(request) do |request_proxy|
-            client_application = ClientApplication.find_by_key(request_proxy.consumer_key)
-            env["oauth.client_application_candidate"] = client_application
+            oauth_application = OauthApplication.find_by_key(request_proxy.consumer_key)
+            env["oauth.oauth_application_candidate"] = oauth_application
 
-            # Store this temporarily in client_application object for use in request token generation
-            client_application.token_callback_url = request_proxy.oauth_callback if request_proxy.oauth_callback
+            # Store this temporarily in oauth_application object for use in request token generation
+            oauth_application.token_callback_url = request_proxy.oauth_callback if request_proxy.oauth_callback
             oauth_token = nil
 
             if request_proxy.token
-              oauth_token = client_application.tokens.first(:conditions => { :token => request_proxy.token })
+              oauth_token = oauth_application.tokens.first(:conditions => { :token => request_proxy.token })
               if oauth_token.respond_to?(:provided_oauth_verifier=)
                 oauth_token.provided_oauth_verifier = request_proxy.oauth_verifier
               end
               env["oauth.token_candidate"] = oauth_token
             end
             # return the token secret and the consumer secret
-            [(oauth_token.nil? ? nil : oauth_token.secret), (client_application.nil? ? nil : client_application.secret)]
+            [(oauth_token.nil? ? nil : oauth_token.secret), (oauth_application.nil? ? nil : oauth_application.secret)]
         end
           if env["oauth.token_candidate"]
             env["oauth.token"] = env["oauth.token_candidate"]
@@ -61,12 +61,12 @@ module OAuth
           else
             strategies << :two_legged
           end
-          env["oauth.client_application"] = env["oauth.client_application_candidate"]
+          env["oauth.oauth_application"] = env["oauth.oauth_application_candidate"]
           env["oauth.version"] = 1
 
         end
         env["oauth.strategies"] = strategies unless strategies.empty?
-        env["oauth.client_application_candidate"] = nil
+        env["oauth.oauth_application_candidate"] = nil
         env["oauth.token_candidate"] = nil
         @app.call(env)
       end

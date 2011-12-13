@@ -18,11 +18,11 @@ module ActiveRecord
       end
 
       def check_class_collisions
-        class_collisions '', %w(ClientApplication OauthNonce RequestToken AccessToken OauthToken)
+        class_collisions '', %w(OauthApplication OauthNonce RequestToken AccessToken OauthToken)
       end
 
       def copy_models
-        template 'client_application.rb', File.join('app/models', 'client_application.rb')
+        template 'oauth_application.rb', File.join('app/models', 'oauth_application.rb')
         template 'oauth_token.rb',        File.join('app/models', 'oauth_token.rb')
         template 'request_token.rb',      File.join('app/models', 'request_token.rb')
         template 'access_token.rb',       File.join('app/models', 'access_token.rb')

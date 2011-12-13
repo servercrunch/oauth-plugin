@@ -13,7 +13,7 @@ class RequestToken < OauthToken
     return false unless authorized?
     return false unless oauth10? || verifier == provided_oauth_verifier
 
-    AccessToken.create(:user => user, :client_application => client_application).tap do
+    AccessToken.create(:user => user, :oauth_application => oauth_application).tap do
       invalidate!
     end
   end

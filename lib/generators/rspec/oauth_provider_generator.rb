@@ -14,7 +14,7 @@ module Rspec
       end
 
       def copy_models_spec_files
-        template 'client_application_spec.rb',  File.join('spec/models', 'client_application_spec.rb')
+        template 'oauth_application_spec.rb',  File.join('spec/models', 'oauth_application_spec.rb')
         template 'oauth_token_spec.rb',         File.join('spec/models', 'oauth_token_spec.rb')
         template 'oauth2_token_spec.rb',        File.join('spec/models', 'oauth2_token_spec.rb')
         template 'oauth2_verifier_spec.rb',     File.join('spec/models', 'oauth2_verifier_spec.rb')
@@ -25,7 +25,7 @@ module Rspec
 
       def create_fixture_file
         if options[:fixtures] && options[:fixture_replacement].nil?
-          template 'client_applications.yml', File.join('test/fixtures', 'client_applications.yml')
+          template 'oauth_applications.yml', File.join('test/fixtures', 'oauth_applications.yml')
           template 'oauth_tokens.yml',        File.join('test/fixtures', 'oauth_tokens.yml')
           template 'oauth_nonces.yml',        File.join('test/fixtures', 'oauth_nonces.yml')
         end

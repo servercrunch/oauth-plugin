@@ -1,9 +1,9 @@
 # Dummy implementation
-class ClientApplication
+class OauthApplication
   attr_accessor :key
 
   def self.find_by_key(key)
-    ClientApplication.new(key)
+    OauthApplication.new(key)
   end
 
   def initialize(key)

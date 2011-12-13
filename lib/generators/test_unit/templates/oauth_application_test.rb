@@ -10,12 +10,12 @@ module OAuthHelpers
 
 end
 
-class ClientApplicationTest < ActiveSupport::TestCase
+class OauthApplicationTest < ActiveSupport::TestCase
   include OAuthHelpers
-  fixtures :users,:client_applications,:oauth_tokens
+  fixtures :users, :oauth_applications, :oauth_tokens
 
   def setup
-    @application = ClientApplication.create :name=>"Agree2",:url=>"http://agree2.com",:user=>users(:quentin)
+    @application = OauthApplication.create :name=>"Agree2",:url=>"http://agree2.com",:user=>users(:quentin)
     create_consumer
   end
 

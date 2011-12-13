@@ -14,10 +14,10 @@ class OauthToken
   index :token, :unique => true
 
   referenced_in :user
-  referenced_in :client_application
+  referenced_in :oauth_application
 
   validates_uniqueness_of :token
-  validates_presence_of :client_application, :token
+  validates_presence_of :oauth_application, :token
   before_validation :generate_keys, :on => :create
 
   def invalidated?
