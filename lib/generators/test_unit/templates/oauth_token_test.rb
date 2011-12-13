@@ -44,14 +44,22 @@ class RequestTokenTest < ActiveSupport::TestCase
     assert_equal false, @token.invalidated?
   end
 
-  def test_should_not_exchange_without_approval
+  def test_should_exchange_with_verifier
     @token.authorize!(users(:quentin))
+    assert @token.authorized?
+    @token.provided_oauth_verifier = @token.verifier
     @access = @token.exchange!
-    assert_not_equal false, @access
+    assert_equal true, @access
     assert @token.invalidated?
 
     assert_equal users(:quentin), @access.user
     assert @access.authorized?
+  end
+
+  def test_should_not_exchange_without_verifier
+    @token.authorize!(users(:quentin))
+    @access = @token.exchange!
+    assert_equal false, @access
   end
 
 end
