@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require File.dirname(__FILE__) + '/../oauth_controller_test_helper'
 require 'oauth/client/action_controller_request'
 
 class OauthApplicationsController; def rescue_action(e) raise e end; end
