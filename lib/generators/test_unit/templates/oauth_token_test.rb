@@ -49,7 +49,7 @@ class RequestTokenTest < ActiveSupport::TestCase
     assert @token.authorized?
     @token.provided_oauth_verifier = @token.verifier
     @access = @token.exchange!
-    assert_equal true, @access
+    assert_not_equal false, @access
     assert @token.invalidated?
 
     assert_equal users(:quentin), @access.user
