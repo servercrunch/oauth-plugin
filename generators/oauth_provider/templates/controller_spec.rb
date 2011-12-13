@@ -350,7 +350,7 @@ describe OauthController, "revoke" do
   it "should redirect to index" do
     do_post
     response.should be_redirect
-    response.should redirect_to('http://test.host/oauth_clients')
+    response.should redirect_to('http://test.host/oauth_applications')
   end
   
   it "should query current_users tokens" do

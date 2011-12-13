@@ -8,11 +8,11 @@ module Erb
       argument :name, :type => :string, :default => 'Oauth'
 
       def copy_view_files
-        template '_form.html.erb',              File.join('app/views', class_path, 'oauth_clients', '_form.html.erb')
-        template 'new.html.erb',                File.join('app/views', class_path, 'oauth_clients', 'new.html.erb')
-        template 'index.html.erb',              File.join('app/views', class_path, 'oauth_clients', 'index.html.erb')
-        template 'show.html.erb',               File.join('app/views', class_path, 'oauth_clients', 'show.html.erb')
-        template 'edit.html.erb',               File.join('app/views', class_path, 'oauth_clients', 'edit.html.erb')
+        template '_form.html.erb',              File.join('app/views', class_path, 'oauth_applications', '_form.html.erb')
+        template 'new.html.erb',                File.join('app/views', class_path, 'oauth_applications', 'new.html.erb')
+        template 'index.html.erb',              File.join('app/views', class_path, 'oauth_applications', 'index.html.erb')
+        template 'show.html.erb',               File.join('app/views', class_path, 'oauth_applications', 'show.html.erb')
+        template 'edit.html.erb',               File.join('app/views', class_path, 'oauth_applications', 'edit.html.erb')
         template 'authorize.html.erb',          File.join('app/views', class_path, file_name, 'authorize.html.erb')
         template 'oauth2_authorize.html.erb',   File.join('app/views', class_path, file_name, 'oauth2_authorize.html.erb')
         template 'authorize_success.html.erb',  File.join('app/views', class_path, file_name, 'authorize_success.html.erb')

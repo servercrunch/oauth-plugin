@@ -294,7 +294,7 @@ class OauthControllerRevokeTest < ActionController::TestCase
   def test_should_redirect_to_index
     do_post
     assert_response :redirect
-    assert_redirected_to('http://test.host/oauth_clients')
+    assert_redirected_to('http://test.host/oauth_applications')
   end
   
   def test_should_query_current_users_tokens

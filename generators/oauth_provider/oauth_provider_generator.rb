@@ -39,7 +39,7 @@ class OauthProviderGenerator < Rails::Generator::Base
       m.directory File.join('app/models', class_path)
       m.directory File.join('app/controllers', controller_class_path)
       m.directory File.join('app/views', controller_class_path, controller_file_name)
-      m.directory File.join('app/views', controller_class_path, 'oauth_clients')
+      m.directory File.join('app/views', controller_class_path, 'oauth_applications')
 
       m.template 'oauth_application.rb',File.join('app/models',"oauth_application.rb")
       m.template 'oauth_token.rb',    File.join('app/models',"oauth_token.rb")
@@ -97,11 +97,11 @@ class OauthProviderGenerator < Rails::Generator::Base
       
       @template_extension= options[:haml] ? "haml" : "erb"
       
-      m.template "_form.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_clients', "_form.html.#{@template_extension}")
-      m.template "new.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_clients', "new.html.#{@template_extension}")
-      m.template "index.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_clients', "index.html.#{@template_extension}")
-      m.template "show.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_clients', "show.html.#{@template_extension}")
-      m.template "edit.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_clients', "edit.html.#{@template_extension}")
+      m.template "_form.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_applications', "_form.html.#{@template_extension}")
+      m.template "new.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_applications', "new.html.#{@template_extension}")
+      m.template "index.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_applications', "index.html.#{@template_extension}")
+      m.template "show.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_applications', "show.html.#{@template_extension}")
+      m.template "edit.html.#{@template_extension}",  File.join('app/views', controller_class_path, 'oauth_applications', "edit.html.#{@template_extension}")
       m.template "authorize.html.#{@template_extension}",  File.join('app/views', controller_class_path, controller_file_name, "authorize.html.#{@template_extension}")
       m.template "oauth2_authorize.html.#{@template_extension}",  File.join('app/views', controller_class_path, controller_file_name, "oauth2_authorize.html.#{@template_extension}")
       m.template "authorize_success.html.#{@template_extension}",  File.join('app/views', controller_class_path, controller_file_name, "authorize_success.html.#{@template_extension}")
