@@ -19,7 +19,7 @@ class OauthProviderGenerator < Rails::Generators::NamedBase
 
   def copy_controller_files
     template 'controller.rb',         File.join('app/controllers', class_path, "#{file_name}_controller.rb")
-    template 'clients_controller.rb', File.join('app/controllers', class_path, "#{file_name}_clients_controller.rb")
+    template 'applications_controller.rb', File.join('app/controllers', class_path, "#{file_name}_applications_controller.rb")
   end
 
   hook_for :test_framework, :template_engine

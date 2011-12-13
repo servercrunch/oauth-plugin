@@ -9,8 +9,8 @@ module TestUnit
       class_option :fixture, :type => :boolean
 
       def copy_controller_test_files
-        template 'clients_controller_test.rb',
-                 File.join('test/functional', class_path, "#{file_name}_clients_controller_test.rb")
+        template 'applications_controller_test.rb',
+                 File.join('test/functional', class_path, "#{file_name}_applications_controller_test.rb")
       end
 
       def copy_models_test_files

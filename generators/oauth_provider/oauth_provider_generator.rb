@@ -51,7 +51,7 @@ class OauthProviderGenerator < Rails::Generator::Base
 
       m.template 'controller.rb',File.join('app/controllers',controller_class_path,"#{controller_file_name}_controller.rb")
 
-      m.template 'clients_controller.rb',File.join('app/controllers',controller_class_path,"#{controller_file_name}_clients_controller.rb")
+      m.template 'applications_controller.rb',File.join('app/controllers',controller_class_path,"#{controller_file_name}_applications_controller.rb")
       m.route_name 'oauth', '/oauth',:controller=>'oauth',:action=>'index'
       m.route_name 'authorize', '/oauth/authorize',:controller=>'oauth',:action=>'authorize'
       m.route_name 'request_token', '/oauth/request_token',:controller=>'oauth',:action=>'request_token'
@@ -75,7 +75,7 @@ class OauthProviderGenerator < Rails::Generator::Base
         m.template 'oauth_applications.yml',File.join('spec/fixtures',"oauth_applications.yml")
         m.template 'oauth_tokens.yml',    File.join('spec/fixtures',"oauth_tokens.yml")
         m.template 'oauth_nonces.yml',    File.join('spec/fixtures',"oauth_nonces.yml")
-        m.template 'clients_controller_spec.rb',File.join('spec/controllers',controller_class_path,"#{controller_file_name}_clients_controller_spec.rb")
+        m.template 'applications_controller_spec.rb',File.join('spec/controllers',controller_class_path,"#{controller_file_name}_applications_controller_spec.rb")
       else
         m.directory File.join('test')
         m.directory File.join('test/unit')
@@ -87,7 +87,7 @@ class OauthProviderGenerator < Rails::Generator::Base
         m.template 'oauth_applications.yml',File.join('test/fixtures',"oauth_applications.yml")
         m.template 'oauth_tokens.yml',    File.join('test/fixtures',"oauth_tokens.yml")
         m.template 'oauth_nonces.yml',    File.join('test/fixtures',"oauth_nonces.yml")
-        m.template 'clients_controller_test.rb',File.join('test/functional',controller_class_path,"#{controller_file_name}_clients_controller_test.rb")
+        m.template 'applications_controller_test.rb',File.join('test/functional',controller_class_path,"#{controller_file_name}_applications_controller_test.rb")
       end
       
       
