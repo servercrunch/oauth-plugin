@@ -13,8 +13,8 @@ class OauthProviderGenerator < Rails::Generators::NamedBase
     # Check for class naming collisions.
     class_collisions class_path, "#{class_name}Controller", # Oauth Controller
                                  "#{class_name}Helper",
-                                 "#{class_name}ClientsController",
-                                 "#{class_name}ClientsHelper"
+                                 "#{class_name}ApplicationsController",
+                                 "#{class_name}ApplicationsHelper"
   end
 
   def copy_controller_files
@@ -32,6 +32,6 @@ class OauthProviderGenerator < Rails::Generators::NamedBase
     route "match '/oauth/token',         :to => 'oauth#token',         :as => :token"
     route "match '/oauth/test_request',  :to => 'oauth#test_request',  :as => :test_request"
 
-    route "resources :#{file_name}_clients"
+    route "resources :#{file_name}_applications"
   end
 end

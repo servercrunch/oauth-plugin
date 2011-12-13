@@ -31,8 +31,8 @@ class OauthProviderGenerator < Rails::Generator::Base
       # Check for class naming collisions.
       m.class_collisions controller_class_path,       "#{controller_class_name}Controller", # Oauth Controller
                                                       "#{controller_class_name}Helper",
-                                                      "#{controller_class_name}ClientsController",
-                                                      "#{controller_class_name}ClientsHelper"
+                                                      "#{controller_class_name}ApplicationsController",
+                                                      "#{controller_class_name}ApplicationsHelper"
       m.class_collisions class_path,                  "OauthApplication","OauthNonce","RequestToken","AccessToken","OauthToken"
 
       # Controller, model, views, and test directories.
@@ -59,7 +59,7 @@ class OauthProviderGenerator < Rails::Generator::Base
       m.route_name 'token', '/oauth/token',:controller=>'oauth',:action=>'token'
       m.route_name 'test_request', '/oauth/test_request',:controller=>'oauth',:action=>'test_request'
 
-      m.route_resources "#{controller_file_name}_clients".to_sym
+      m.route_resources "#{controller_file_name}_applications".to_sym
       
       if !options[:test_unit]
         m.directory File.join('spec')
